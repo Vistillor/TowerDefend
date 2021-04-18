@@ -17,8 +17,12 @@ public class Tower : MonoBehaviour
         // Instancia una bala cada vez que el jugador pulsa el espacio
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           GameObject bala = Instantiate(bulletPrefab, transform.position + new Vector3(0, height, 0), Quaternion.identity);
-            bala.GetComponent<Movimiento>().enemy = enemy;
+            //comprueba si el enemigo existe o ya ha sido destruido
+            if (enemy != null)
+            {
+                GameObject bala = Instantiate(bulletPrefab, transform.position + new Vector3(0, height, 0), Quaternion.identity);
+                bala.GetComponent<Movimiento>().enemy = enemy;
+            }
         }
     }
 }
