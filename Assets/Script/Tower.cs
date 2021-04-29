@@ -12,32 +12,43 @@ public class Tower : MonoBehaviour
 
     public float height;
 
-    public float ratio;
+   
 
-    private void Start()
+    
+
+    [Tooltip("frecuencia de disparo deseada, cada cuantos s se dispara")]
+    public float shootfrecuencia;
+
+    private float lastShotTime;
+
+
+
+    private void Update()
     {
-        InvokeRepeating("Shoot", 3, ratio);
+        Shoot();
     }
-
-    void Update()
-    {
-        // Instancia una bala cada vez que el jugador pulsa el espacio
-      //  if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //comprueba si el enemigo existe o ya ha sido destruido
-           
-        }
-
-       
-    }
-    private void Shoot()
-    {
+    private void Shoot() { 
         if (enemy != null)
         {
-            GameObject bala = Instantiate(bulletPrefab, transform.position + new Vector3(0, height, 0), Quaternion.identity);
-            bala.GetComponent<Movimiento>().enemy = enemy;
+            //comprueba si ha pasado el tiempo correspondiente desde el último disparo
+            if (Time.time - lastShotTime >= shootfrecuencia)
+            {
+                //realiza el disparo instanciado la bala
+                GameObject bala = Instantiate(bulletPrefab, transform.position + new Vector3(0, height, 0), Quaternion.identity);
+                //Asigna a la bala instaciada el enemigo al que tiene que dirigirse
+                bala.GetComponent<Movimiento>().enemy = enemy;
+                //regista el momento en el que se ha disparado
+                lastShotTime = Time.time;
+            }
         }
+
+
     }
+
+  
+
+
+    
     private void OnTriggerEnter(Collider other)
     {
         //combrueba si es el enemigo el que entra en el collaider
@@ -48,4 +59,9 @@ public class Tower : MonoBehaviour
 
         
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        enemy = null;
+    }
+
 }
