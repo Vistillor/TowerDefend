@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8769279840979640040}
   - component: {fileID: 6797702893966535202}
   - component: {fileID: 7814498734195598677}
+  - component: {fileID: 1242718973}
   m_Layer: 0
   m_Name: towerSquare_sampleC
   m_TagString: Untagged
@@ -94,6 +95,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0a266f50d11134cb0d31eebebe1d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1819845550025524171, guid: 5585ae0677bc35a40ab44a940055b806,
+    type: 3}
   enemy: {fileID: 0}
   height: 1.9
+  shootfrecuencia: 1
+--- !u!135 &1242718973
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996381721313840119}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.35
+  m_Center: {x: -0.04, y: 0.44, z: -0.04}
